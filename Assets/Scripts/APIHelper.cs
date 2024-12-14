@@ -5,6 +5,8 @@ using System.Web;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using Unity.Android.Gradle.Manifest;
+using Unity.VisualScripting.FullSerializer;
 
 
 public static class OpenTdbAPIHelper
@@ -58,7 +60,8 @@ public static class OpenTdbAPIHelper
                 
                 curQuestion.Number = i + 1;
                 curQuestion.Difficulty = curResult.difficulty;
-                curQuestion.Category = HttpUtility.HtmlDecode(curResult.category);
+                curQuestion.Difficulty = char.ToUpper(curQuestion.Difficulty[0]) + curQuestion.Difficulty.Substring(1);
+                curQuestion.Category = ParseCategoryString(HttpUtility.HtmlDecode(curResult.category));
                 curQuestion.Question = HttpUtility.HtmlDecode(curResult.question);
                 curQuestion.CorrectAnswer = HttpUtility.HtmlDecode(curResult.correct_answer);
                 curQuestion.IncorrectAnswers = new string[curResult.incorrect_answers.Length];
@@ -87,20 +90,24 @@ public static class OpenTdbAPIHelper
             
             category.Id = apiCategory.id;
 
-            category.Name = apiCategory.name;
-
-            foreach (string ignoreString in CATEGORY_STRING_IGNORES)
-            {
-                if (category.Name.Contains(ignoreString))
-                {
-                    category.Name = category.Name.Remove(0, ignoreString.Length);
-                }
-            }
+            category.Name = ParseCategoryString(apiCategory.name);
 
             categories.Add(category);
         }
         categories = categories.OrderBy(c => c.Name).ToList();
         return categories;
+    }
+
+    private static string ParseCategoryString(string unparsedString)
+    {
+        foreach (string ignoreString in CATEGORY_STRING_IGNORES)
+        {
+            if (unparsedString.Contains(ignoreString))
+            {
+                unparsedString = unparsedString.Remove(0, ignoreString.Length);
+            }
+        }
+        return unparsedString;
     }
     
     private static string RetrieveJSON(string url)
@@ -139,12 +146,48 @@ public static class OpenTdbAPIHelper
         {
             url += "&type=" + type;
         }
+        Debug.Log(url);
         return url;
     }
 
-    private static string FormURL(GameSettings gameSettings)
+    public static string FormURL(GameSettings gameSettings)
     {
-        return string.Empty;
+        string url = "https://opentdb.com/api.php?amount=" + gameSettings.NumQuestions;
+        if (gameSettings.Category.Id != -1)
+        {
+            url += "&category=" + gameSettings.Category.Id.ToString();
+        }
+        if (gameSettings.Difficulty != TriviaDifficulty.Any)
+        {
+            url += "&difficulty=";
+            switch (gameSettings.Difficulty)
+            {
+                case TriviaDifficulty.Easy:
+                    url += "easy";
+                    break;
+                case TriviaDifficulty.Medium:
+                    url += "medium";
+                    break;
+                case TriviaDifficulty.Hard:
+                    url += "hard";
+                    break;  
+            }
+        }
+        if (gameSettings.QuestionType != TriviaQuestionType.Mixed)
+        {
+            url += "&type=";
+            switch (gameSettings.QuestionType)
+            {
+                case TriviaQuestionType.MultipleChoice:
+                    url += "multiple";
+                    break;
+                case TriviaQuestionType.TrueFalse:
+                    url += "boolean";
+                    break;
+            }
+        }
+        Debug.Log(url);
+        return url;
     }
 
 }

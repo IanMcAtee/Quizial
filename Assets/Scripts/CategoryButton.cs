@@ -41,10 +41,8 @@ public class CategoryButton : MonoBehaviour
 
     private void OnDeselectCategory()
     {
-        SettingsManager.Instance.Settings.Category = SettingsManager.Instance.AvailableCategories[0];
-        print(SettingsManager.Instance.Settings.Category.Name);
         _toggleButton.image.fillCenter = false;
         _buttonText.color = _normalTextColor;
-        //CategoryButton anyCategoryButton = 
+        
     }
 }

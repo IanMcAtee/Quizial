@@ -208,6 +208,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 154b368046ab4b542b51b293584cef0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _allowDeselect: 0
 --- !u!1 &112740960
 GameObject:
   m_ObjectHideFlags: 0
@@ -823,36 +824,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 286010198}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 286010198}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &318743237
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -977,36 +954,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1594017419}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1594017419}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &364816823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1131,36 +1084,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1362179077}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1362179077}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &424251990
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1435,36 +1364,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 301320860}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 301320860}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &492612354
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1589,36 +1494,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117273463}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 117273463}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &547056057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2043,36 +1924,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1161077053}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1161077053}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &707977968
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2197,36 +2054,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 0}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2142284566}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2142284566}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &710757240
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2453,36 +2286,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1562263467}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1562263467}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &890399305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3149,36 +2958,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1541577095}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1541577095}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1354177129
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3453,36 +3238,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 706740357}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 706740357}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1389579373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4207,36 +3968,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 701119607}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 701119607}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1704802063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4361,36 +4098,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1701321229}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1701321229}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1718319401
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4515,36 +4228,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1854243632}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1854243632}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1763998306
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4669,36 +4358,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1042467014}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1042467014}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1798049372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4973,36 +4638,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1320286583}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1320286583}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &1932401615
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5127,36 +4768,12 @@ MonoBehaviour:
   <IsToggled>k__BackingField: 0
   <ToggledColor>k__BackingField: {r: 0.36320752, g: 0.9253701, b: 1, a: 1}
   <ToggledSprite>k__BackingField: {fileID: 21300000, guid: acd1b3187a1df3b4bbbbff8c31ca5ca8, type: 3}
-  _onToggleSelect:
+  OnToggleSelect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 455933497}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: On
-          m_BoolArgument: 0
-        m_CallState: 2
-  _onToggleDeselect:
+      m_Calls: []
+  OnToggleDeselect:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 455933497}
-        m_TargetAssemblyTypeName: SetText, Assembly-CSharp
-        m_MethodName: UpdateText
-        m_Mode: 5
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: Off
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: []
 --- !u!114 &2076121074
 MonoBehaviour:
   m_ObjectHideFlags: 0

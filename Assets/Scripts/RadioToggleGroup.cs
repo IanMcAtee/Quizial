@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class RadioToggleGroup : MonoBehaviour
 {
+    // KNOWN ISSUE ON TOGGLING _allowDeselct at runtime
+    [SerializeField]
+    private bool _allowDeselect = true;
+
     private ToggleButton[] _toggleButtons;
 
     private ToggleButton _selectedToggleButton = null;
@@ -30,12 +34,23 @@ public class RadioToggleGroup : MonoBehaviour
             }
             else if (_toggleButtons[i].IsToggled)
             {
+                if (!_allowDeselect)
+                {
+                    _toggleButtons[i].interactable = true;
+                }
                 _toggleButtons[i].Toggle();
             }
             
         }
 
+
         _selectedToggleButton = _toggleButtons[selectedIndex];
+
+        if (!_allowDeselect)
+        {
+            _selectedToggleButton.interactable = false;
+        }
+
         print(_selectedToggleButton.name);
     }
 }

@@ -53,12 +53,14 @@ public class QuestionManager : MonoBehaviour
 
     private void Start()
     {
-        StartQuestions();
+        //StartQuestions();
     }
 
     public void StartQuestions()
     {
-        QuestionSet = OpenTdbAPIHelper.GetQuestionSet("https://opentdb.com/api.php?amount=10");
+        //QuestionSet = OpenTdbAPIHelper.GetQuestionSet("https://opentdb.com/api.php?amount=10");
+        string QuestionSetURL = OpenTdbAPIHelper.FormURL(SettingsManager.Instance.Settings);
+        QuestionSet = OpenTdbAPIHelper.GetQuestionSet(QuestionSetURL);
         _curQuestionIndex = 0;
         DisplayQuestion(QuestionSet[0]);
         
@@ -234,7 +236,10 @@ public class QuestionManager : MonoBehaviour
             _questionBorderImage.fillAmount = timeRemaining/_timePerQuestion;
             
         }
-        OnQuestionTimeOut();
+        if (!_hasAnswered)
+        {
+            OnQuestionTimeOut();
+        }
         yield return null;
     }
 
