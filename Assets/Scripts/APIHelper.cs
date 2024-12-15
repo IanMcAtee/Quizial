@@ -5,8 +5,6 @@ using System.Web;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
-using Unity.Android.Gradle.Manifest;
-using Unity.VisualScripting.FullSerializer;
 
 
 public static class OpenTdbAPIHelper
@@ -43,37 +41,51 @@ public static class OpenTdbAPIHelper
     private const string CATEGORIES_URL = "https://opentdb.com/api_category.php";
     private static readonly string[] CATEGORY_STRING_IGNORES = { "Entertainment: ", "Science: " };
 
-    public static TriviaQuestion[] GetQuestionSet(string questionURL)
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="questionURL"></param>
+    /// <param name="responseCode"></param>
+    /// <returns></returns>
+    public static TriviaQuestion[] GetQuestionSet(string questionURL, out ResponseCode responseCode)
     {
-            string json = RetrieveJSON(questionURL);
+        // Retrieve the JSON string from OpenTriviaDB and parse into OpenTdbAPIResponse class
+        string json = RetrieveJSON(questionURL);
+        OpenTdbAPIResponse apiResponse = JsonUtility.FromJson<OpenTdbAPIResponse>(json);
 
-            OpenTdbAPIResponse apiResponse = JsonUtility.FromJson<OpenTdbAPIResponse>(json);
+        // Get the response code in reference variable, return an empty array if error occurred
+        responseCode = (ResponseCode)apiResponse.response_code;
+        if (responseCode != ResponseCode.Success)
+        {
+            return new TriviaQuestion[0];
+        }
+       
 
-            TriviaQuestion[] questionSet = new TriviaQuestion[apiResponse.results.Length];
-            TriviaQuestion curQuestion;
-            OpenTdbAPIResponse.Result curResult;
-            for (int i = 0; i < apiResponse.results.Length; i++)
+        TriviaQuestion[] questionSet = new TriviaQuestion[apiResponse.results.Length];
+        TriviaQuestion curQuestion;
+        OpenTdbAPIResponse.Result curResult;
+        for (int i = 0; i < apiResponse.results.Length; i++)
+        {
+            curQuestion = new TriviaQuestion();
+            curResult = apiResponse.results[i];
+                
+                
+            curQuestion.Number = i + 1;
+            curQuestion.Difficulty = curResult.difficulty;
+            curQuestion.Difficulty = char.ToUpper(curQuestion.Difficulty[0]) + curQuestion.Difficulty.Substring(1);
+            curQuestion.Category = ParseCategoryString(HttpUtility.HtmlDecode(curResult.category));
+            curQuestion.Question = HttpUtility.HtmlDecode(curResult.question);
+            curQuestion.CorrectAnswer = HttpUtility.HtmlDecode(curResult.correct_answer);
+            curQuestion.IncorrectAnswers = new string[curResult.incorrect_answers.Length];
+            for (int j = 0; j < curResult.incorrect_answers.Length; j++)
             {
-                curQuestion = new TriviaQuestion();
-                curResult = apiResponse.results[i];
-                
-                
-                curQuestion.Number = i + 1;
-                curQuestion.Difficulty = curResult.difficulty;
-                curQuestion.Difficulty = char.ToUpper(curQuestion.Difficulty[0]) + curQuestion.Difficulty.Substring(1);
-                curQuestion.Category = ParseCategoryString(HttpUtility.HtmlDecode(curResult.category));
-                curQuestion.Question = HttpUtility.HtmlDecode(curResult.question);
-                curQuestion.CorrectAnswer = HttpUtility.HtmlDecode(curResult.correct_answer);
-                curQuestion.IncorrectAnswers = new string[curResult.incorrect_answers.Length];
-                for (int j = 0; j < curResult.incorrect_answers.Length; j++)
-                {
-                    curQuestion.IncorrectAnswers[j] = HttpUtility.HtmlDecode(curResult.incorrect_answers[j]);
-                }
-
-                questionSet[i] = curQuestion;
+                curQuestion.IncorrectAnswers[j] = HttpUtility.HtmlDecode(curResult.incorrect_answers[j]);
             }
 
-            return questionSet;
+            questionSet[i] = curQuestion;
+        }
+
+        return questionSet;
         
     }
 
@@ -188,6 +200,16 @@ public static class OpenTdbAPIHelper
         }
         Debug.Log(url);
         return url;
+    }
+
+    public enum ResponseCode
+    {
+        Success = 0,
+        NoResults = 1,
+        InvalidParameter = 2,
+        TokenNotFound = 3,
+        TokenEmpty = 4,
+        RateLimit = 5
     }
 
 }

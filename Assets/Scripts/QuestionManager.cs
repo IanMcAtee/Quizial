@@ -60,7 +60,15 @@ public class QuestionManager : MonoBehaviour
     {
         //QuestionSet = OpenTdbAPIHelper.GetQuestionSet("https://opentdb.com/api.php?amount=10");
         string QuestionSetURL = OpenTdbAPIHelper.FormURL(SettingsManager.Instance.Settings);
-        QuestionSet = OpenTdbAPIHelper.GetQuestionSet(QuestionSetURL);
+        OpenTdbAPIHelper.ResponseCode responseCode;
+        QuestionSet = OpenTdbAPIHelper.GetQuestionSet(QuestionSetURL, out responseCode);
+        if (responseCode != OpenTdbAPIHelper.ResponseCode.Success)
+        {
+            // Handle api error
+            Debug.LogError($"API ERROR: {responseCode}");
+            return;
+        }
+
         _curQuestionIndex = 0;
         DisplayQuestion(QuestionSet[0]);
         
