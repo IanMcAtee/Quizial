@@ -9,8 +9,6 @@ public class QuestionManager : MonoBehaviour
 {
     [SerializeField]
     private float _nextQuestionDelay = 3f;
-    [SerializeField] 
-    private float _timePerQuestion = 10f;
 
     [Header("Question Properties")]
     [SerializeField]
@@ -26,7 +24,7 @@ public class QuestionManager : MonoBehaviour
 
     [Header("Animation Properties")]
     [SerializeField]
-    private Animator _questionAnimator;
+    private QuestionAnimator _questionAnimator;
     
 
     [Header("Difficulty/Category/Question Number Properties")]
@@ -39,12 +37,17 @@ public class QuestionManager : MonoBehaviour
     public TriviaQuestion[] QuestionSet { get; private set; }
     public int Score { get; private set; } = 0;
 
+    public OpenTdbAPIHelper.ResponseCode APIResponseCode
+    {
+        get { return _responseCode; }
+    }
+
+    private OpenTdbAPIHelper.ResponseCode _responseCode = OpenTdbAPIHelper.ResponseCode.None;
     private int _curQuestionIndex = 0;
     private int _correctAnswerIndex;
     private List<GameObject> _curAnswerButtonObjects = new List<GameObject>();
     private bool _hasAnswered = false;
-    private float _totalAnimationTime = 0f;
-    private WaitForSeconds _halfAnimationDelay = null;
+
 
     private void Awake()
     {
@@ -59,16 +62,7 @@ public class QuestionManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        foreach (AnimationClip anim in _questionAnimator.runtimeAnimatorController.animationClips)
-        {
-            _totalAnimationTime += anim.length;
-        }
-        _halfAnimationDelay = new WaitForSeconds(_totalAnimationTime / 2f);
-        print($"Total Animation Time: {_totalAnimationTime}");
-
-    }
+    
 
     
     public void StartQuestions()
@@ -77,12 +71,11 @@ public class QuestionManager : MonoBehaviour
         ResetQuestionManagerState();
 
         string QuestionSetURL = OpenTdbAPIHelper.FormURL(GameManager.Instance.Settings);
-        OpenTdbAPIHelper.ResponseCode responseCode;
-        QuestionSet = OpenTdbAPIHelper.GetQuestionSet(QuestionSetURL, out responseCode);
-        if (responseCode != OpenTdbAPIHelper.ResponseCode.Success)
+        QuestionSet = OpenTdbAPIHelper.GetQuestionSet(QuestionSetURL, out _responseCode);
+        if (_responseCode != OpenTdbAPIHelper.ResponseCode.Success)
         {
-            // Handle api error
-            Debug.LogError($"API ERROR: {responseCode}");
+            GameManager.Instance.UpdateGameState(GameState.Error);
+            Debug.LogError($"API ERROR: {_responseCode}");
             return;
         }
 
@@ -93,6 +86,7 @@ public class QuestionManager : MonoBehaviour
 
     private void ResetQuestionManagerState()
     {
+        _questionAnimator.ResetPosition();
         ClearAnswers();
         StopAllCoroutines();
         _hasAnswered = false;
@@ -232,13 +226,13 @@ public class QuestionManager : MonoBehaviour
 
     private IEnumerator QuestionCountdownRoutine()
     {
-        float timeRemaining = _timePerQuestion;
+        float timeRemaining = GameManager.Instance.Settings.TimePerQuestion;
 
         while (timeRemaining > 0 && !_hasAnswered)
         {
             yield return null;
             timeRemaining -= Time.deltaTime;
-            _questionBorderImage.fillAmount = timeRemaining/_timePerQuestion;
+            _questionBorderImage.fillAmount = timeRemaining/GameManager.Instance.Settings.TimePerQuestion;
             
         }
         if (!_hasAnswered)
@@ -250,27 +244,41 @@ public class QuestionManager : MonoBehaviour
 
     private IEnumerator AnimateQuestionRoutine(TriviaQuestion question)
     {
+        
+      
 
         if (_curQuestionIndex == 0)
         {
             SetQuestionText(question);
-            _questionAnimator.SetTrigger("Enter");
-            print("ENTER TRIGGER");
-            yield return _halfAnimationDelay;
         }
         else
         {
-     
-            _questionAnimator.SetTrigger("Exit");
-       
-            yield return _halfAnimationDelay;
+
+            _questionAnimator.PlayExitAnimation();
+
+            while (_questionAnimator.IsAnimating)
+            {
+                yield return null;
+            }
+
+
             ClearAnswers();
             SetQuestionText(question);
-            _questionAnimator.SetTrigger("Enter");
-          
-            yield return _halfAnimationDelay;
+
+            _questionAnimator.PlayEnterAnimation();
+
+            while (_questionAnimator.IsAnimating)
+            {
+                yield return null;
+            }
+
         }
-        StartCoroutine(QuestionCountdownRoutine());
+
+        if (GameManager.Instance.Settings.TimePerQuestion > 0f)
+        {
+            StartCoroutine(QuestionCountdownRoutine());
+        }
+        
     }
 
     private void SetQuestionText(TriviaQuestion question)

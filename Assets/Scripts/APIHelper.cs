@@ -209,7 +209,8 @@ public static class OpenTdbAPIHelper
         InvalidParameter = 2,
         TokenNotFound = 3,
         TokenEmpty = 4,
-        RateLimit = 5
+        RateLimit = 5,
+        None = -1
     }
 
 }

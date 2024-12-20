@@ -99,7 +99,7 @@ public class GameSettings
     public TriviaCategory Category = new TriviaCategory();
     public TriviaDifficulty Difficulty = TriviaDifficulty.Any;
     public TriviaQuestionType QuestionType = TriviaQuestionType.Mixed;
-    public float SFXVolume = 1.0f;
+    public float TimePerQuestion = 30f;
 }
 
 
