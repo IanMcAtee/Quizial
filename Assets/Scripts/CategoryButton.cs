@@ -33,8 +33,8 @@ public class CategoryButton : MonoBehaviour
 
     public void OnSelectCategory()
     {
-        SettingsManager.Instance.Settings.Category = AssociatedCategory;
-        print(SettingsManager.Instance.Settings.Category.Name);
+        GameManager.Instance.Settings.Category = AssociatedCategory;
+        print(GameManager.Instance.Settings.Category.Name);
         _toggleButton.image.fillCenter = true;
         _buttonText.color = _toggledTextColor;
     }

@@ -8,6 +8,6 @@ public class CategoryTextSetter : MonoBehaviour
 
     private void OnEnable()
     {
-        _categoryText.text = SettingsManager.Instance.Settings.Category.Name;
+        _categoryText.text = GameManager.Instance.Settings.Category.Name;
     }
 }

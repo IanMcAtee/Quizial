@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using System.Collections.Generic;
 using System.Collections;
+using System.Runtime.CompilerServices;
 
 public class QuestionManager : MonoBehaviour
 {
@@ -23,6 +24,11 @@ public class QuestionManager : MonoBehaviour
     [SerializeField]
     private Transform _answerGroup;
 
+    [Header("Animation Properties")]
+    [SerializeField]
+    private Animator _questionAnimator;
+    
+
     [Header("Difficulty/Category/Question Number Properties")]
     [SerializeField]
     private TMP_Text _categoryDifficultyText;
@@ -37,6 +43,8 @@ public class QuestionManager : MonoBehaviour
     private int _correctAnswerIndex;
     private List<GameObject> _curAnswerButtonObjects = new List<GameObject>();
     private bool _hasAnswered = false;
+    private float _totalAnimationTime = 0f;
+    private WaitForSeconds _halfAnimationDelay = null;
 
     private void Awake()
     {
@@ -53,13 +61,22 @@ public class QuestionManager : MonoBehaviour
 
     private void Start()
     {
-        //StartQuestions();
+        foreach (AnimationClip anim in _questionAnimator.runtimeAnimatorController.animationClips)
+        {
+            _totalAnimationTime += anim.length;
+        }
+        _halfAnimationDelay = new WaitForSeconds(_totalAnimationTime / 2f);
+        print($"Total Animation Time: {_totalAnimationTime}");
+
     }
 
+    
     public void StartQuestions()
     {
-        //QuestionSet = OpenTdbAPIHelper.GetQuestionSet("https://opentdb.com/api.php?amount=10");
-        string QuestionSetURL = OpenTdbAPIHelper.FormURL(SettingsManager.Instance.Settings);
+        // Reset the state of the question manager
+        ResetQuestionManagerState();
+
+        string QuestionSetURL = OpenTdbAPIHelper.FormURL(GameManager.Instance.Settings);
         OpenTdbAPIHelper.ResponseCode responseCode;
         QuestionSet = OpenTdbAPIHelper.GetQuestionSet(QuestionSetURL, out responseCode);
         if (responseCode != OpenTdbAPIHelper.ResponseCode.Success)
@@ -70,54 +87,33 @@ public class QuestionManager : MonoBehaviour
         }
 
         _curQuestionIndex = 0;
-        DisplayQuestion(QuestionSet[0]);
+        StartCoroutine(AnimateQuestionRoutine(QuestionSet[0]));
         
     }
+
+    private void ResetQuestionManagerState()
+    {
+        ClearAnswers();
+        StopAllCoroutines();
+        _hasAnswered = false;
+        _questionBorderImage.fillAmount = 1f;
+    }
+
+
 
     public void NextQuestion()
     { 
         _curQuestionIndex++;
         if (_curQuestionIndex < QuestionSet.Length)
         {
-            ClearAnswers();
+            
             _hasAnswered = false;
-            DisplayQuestion(QuestionSet[_curQuestionIndex]);
+            StartCoroutine(AnimateQuestionRoutine(QuestionSet[_curQuestionIndex]));
         }
         else
         {
-            //Round over
+            GameManager.Instance.UpdateGameState(GameState.GameOver);
         }
-    }
-
-    private void DisplayQuestion(TriviaQuestion question)
-    {
-        print($"Correct Answer: {question.CorrectAnswer}");
-        print("Incorrect Answers: ");
-        foreach (string answer in question.IncorrectAnswers)
-        {
-            print(answer);
-        }
-
-        // Set question, category, difficulty, and number text
-        _questionText.text = question.Question;
-        _categoryDifficultyText.text = $"{question.Category} \u2022 {question.Difficulty}";
-        _questionNumberText.text = $"{question.Number.ToString()} / {QuestionSet.Length.ToString()}";
-
-        // Display answers based on if they're true/false or multiple choice types
-        if (question.IncorrectAnswers.Length == 1)
-        {
-            DisplayTrueFalseAnswers(question);
-        }
-        else
-        {
-            DisplayMultipleAnswers(question);
-        }
-
-        StartCoroutine(QuestionCountdownRoutine());
-
-        
-
-
     }
 
     private void DisplayTrueFalseAnswers(TriviaQuestion question)
@@ -227,6 +223,7 @@ public class QuestionManager : MonoBehaviour
         StartCoroutine(NextQuestionDelayRoutine());
     }
 
+
     private IEnumerator NextQuestionDelayRoutine()
     {
         yield return new WaitForSeconds(_nextQuestionDelay);
@@ -249,6 +246,47 @@ public class QuestionManager : MonoBehaviour
             OnQuestionTimeOut();
         }
         yield return null;
+    }
+
+    private IEnumerator AnimateQuestionRoutine(TriviaQuestion question)
+    {
+
+        if (_curQuestionIndex == 0)
+        {
+            SetQuestionText(question);
+            _questionAnimator.SetTrigger("Enter");
+            print("ENTER TRIGGER");
+            yield return _halfAnimationDelay;
+        }
+        else
+        {
+     
+            _questionAnimator.SetTrigger("Exit");
+       
+            yield return _halfAnimationDelay;
+            ClearAnswers();
+            SetQuestionText(question);
+            _questionAnimator.SetTrigger("Enter");
+          
+            yield return _halfAnimationDelay;
+        }
+        StartCoroutine(QuestionCountdownRoutine());
+    }
+
+    private void SetQuestionText(TriviaQuestion question)
+    {
+        _categoryDifficultyText.text = $"{question.Category} \u2022 {question.Difficulty}";
+        _questionNumberText.text = $"{question.Number.ToString()} / {QuestionSet.Length.ToString()}";
+        _questionText.text = question.Question;
+
+        if (question.IncorrectAnswers.Length == 1)
+        {
+            DisplayTrueFalseAnswers(question);
+        }
+        else
+        {
+            DisplayMultipleAnswers(question);
+        }
     }
 
 

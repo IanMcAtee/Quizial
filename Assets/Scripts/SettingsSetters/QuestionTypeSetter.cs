@@ -7,7 +7,7 @@ public class QuestionTypeSetter : MonoBehaviour
 
     private void OnEnable()
     {
-        SettingsManager.Instance.Settings.QuestionType = _associatedQuestionType;   
-        print(SettingsManager.Instance.Settings.QuestionType.ToString());
+        GameManager.Instance.Settings.QuestionType = _associatedQuestionType;   
+        print(GameManager.Instance.Settings.QuestionType.ToString());
     }
 }

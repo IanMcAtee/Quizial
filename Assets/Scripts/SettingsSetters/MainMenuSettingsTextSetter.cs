@@ -11,8 +11,8 @@ public class MainMenuSettingsTextSetter : MonoBehaviour
     private void OnEnable()
     {
         _mainMenuSettingsText.text = $"<line-height={_settingsTextLineHeight}>" +
-                                     $"Number of Questions: {SettingsManager.Instance.Settings.NumQuestions}\n" +
-                                     $"Category: {SettingsManager.Instance.Settings.Category.Name}\n" +
-                                     $"Difficulty: {SettingsManager.Instance.Settings.Difficulty}";
+                                     $"Number of Questions: {GameManager.Instance.Settings.NumQuestions}\n" +
+                                     $"Category: {GameManager.Instance.Settings.Category.Name}\n" +
+                                     $"Difficulty: {GameManager.Instance.Settings.Difficulty}";
     }
 }

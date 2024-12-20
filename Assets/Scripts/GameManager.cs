@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 [DefaultExecutionOrder(-1)]
@@ -10,7 +11,14 @@ public class GameManager : MonoBehaviour
 
     public static event Action<GameState> OnGameStateUpdate;
 
-    public GameState State { get; private set; }
+    public GameSettings Settings { get; set; } = new GameSettings();
+    public List<TriviaCategory> AvailableCategories { get; private set; }
+
+    public GameState State { get; private set; } = GameState.MainMenu;
+
+    public int Score { get; private set; } = 0;
+
+    public bool IsPlaying { get; private set; } = false;
 
 
     private void Awake()
@@ -24,7 +32,13 @@ public class GameManager : MonoBehaviour
             Instance = this;
             DontDestroyOnLoad(this);
         }
+
+        // Get the list of available trivia categories from the API
+        PopulateCategories();
+        
+
     }
+
 
     public void UpdateGameState(GameState newState)
     {
@@ -33,20 +47,87 @@ public class GameManager : MonoBehaviour
         switch (newState)
         {
             case GameState.MainMenu:
+                IsPlaying = false;
                 break;
             case GameState.Playing:
+                Time.timeScale = 1f;
+                if (!IsPlaying)
+                {
+                    IsPlaying = true;
+                    QuestionManager.Instance.StartQuestions();
+                }
                 break; 
             case GameState.GameOver:
+                IsPlaying = false;
+                break;
+            case GameState.Paused:
+                Time.timeScale = 0f;
                 break;
         }
 
         OnGameStateUpdate?.Invoke(State);
     }
+
+    private void PopulateCategories()
+    {
+        AvailableCategories = OpenTdbAPIHelper.GetCategories();
+        //Insert the "any" category at the beginning
+        AvailableCategories.Insert(0, new TriviaCategory());
+    }
+
+    public void UpdateSettings(GameSettings newSettings)
+    {
+        Settings = newSettings;
+    }
 }
+
+
 
 public enum GameState
 {
     MainMenu,
     Playing,
-    GameOver
+    Paused,
+    GameOver,
+    Error
 }
+
+#region Settings Classes
+public class GameSettings
+{
+    public int NumQuestions = 10;
+    public TriviaCategory Category = new TriviaCategory();
+    public TriviaDifficulty Difficulty = TriviaDifficulty.Any;
+    public TriviaQuestionType QuestionType = TriviaQuestionType.Mixed;
+    public float SFXVolume = 1.0f;
+}
+
+
+public class TriviaCategory
+{
+    public string Name;
+    public int Id;
+
+    public TriviaCategory()
+    {
+        Name = "Any";
+        Id = -1;
+    }
+}
+
+public enum TriviaDifficulty
+{
+    Any,
+    Easy,
+    Medium,
+    Hard
+}
+
+public enum TriviaQuestionType
+{
+    Mixed,
+    MultipleChoice,
+    TrueFalse,
+    WriteIn
+}
+#endregion

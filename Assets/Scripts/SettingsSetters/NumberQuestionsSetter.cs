@@ -8,7 +8,7 @@ public class NumberQuestionsSetter : MonoBehaviour
 
     public void SetNumberOfQuestions()
     {
-        SettingsManager.Instance.Settings.NumQuestions = _plusMinusButtonGroup.Value;
-        print(SettingsManager.Instance.Settings.NumQuestions);
+        GameManager.Instance.Settings.NumQuestions = _plusMinusButtonGroup.Value;
+        print(GameManager.Instance.Settings.NumQuestions);
     }
 }
