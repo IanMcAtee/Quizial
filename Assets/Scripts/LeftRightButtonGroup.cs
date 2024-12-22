@@ -1,69 +1,35 @@
 using UnityEngine;
-using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class LeftRightButtonGroup : MonoBehaviour
 {
     [SerializeField]
-    private Button 
+    protected Button
         _leftButton,
         _rightButton;
 
     [SerializeField]
-    private int _startingObjectIndex = 0;
-
-    [SerializeField]
-    private GameObject[] _centerObjects;
-
-    [SerializeField]
-    private UnityEvent _onValueChanged;
-
-    public int CurrentObjectIndex { get; private set; }
+    protected UnityEvent
+        _onLeftButtonClick = null,
+        _onRightButtonClick = null;
 
 
-    private void Start()
+    private void Awake()
     {
-        _leftButton.onClick.AddListener(ShiftLeft);
-        _rightButton.onClick.AddListener(ShiftRight);
-        CurrentObjectIndex = _startingObjectIndex;
-        SetObjectActiveAndInvoke(CurrentObjectIndex);
-    }    
+        _leftButton.onClick.AddListener(Left_OnClick);
+        _rightButton.onClick.AddListener(Right_OnClick);
 
-    public void ShiftLeft()
-    {
-        if (CurrentObjectIndex > 0)
-        {
-            CurrentObjectIndex--;
-            print(CurrentObjectIndex);
-            SetObjectActiveAndInvoke(CurrentObjectIndex);
-        }
     }
 
-    public void ShiftRight()
+    public virtual void Left_OnClick()
     {
-        if (CurrentObjectIndex < _centerObjects.Length - 1)
-        {
-            CurrentObjectIndex++;
-            print(CurrentObjectIndex);
-            SetObjectActiveAndInvoke(CurrentObjectIndex);
-        }
+        _onLeftButtonClick?.Invoke();
     }
 
-    private void SetObjectActiveAndInvoke(int index)
+    public virtual void Right_OnClick()
     {
-        for (int i = 0;  i < _centerObjects.Length; i++)
-        {
-            if (i  == index)
-            {
-                _centerObjects[i].SetActive(true);
-                continue;
-            }
-            _centerObjects[i].SetActive(false);
-        }
-        _onValueChanged?.Invoke();
+        _onRightButtonClick?.Invoke();
     }
-
-
-
 
 }

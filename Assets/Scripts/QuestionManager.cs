@@ -106,6 +106,7 @@ public class QuestionManager : MonoBehaviour
         }
         else
         {
+
             GameManager.Instance.UpdateGameState(GameState.GameOver);
         }
     }

@@ -3,8 +3,9 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using System.Collections;
+using Unity.VisualScripting;
 
-public class PlusMinusButtonGroup : MonoBehaviour
+public class PlusMinusButtonGroup : LeftRightButtonGroup
 {
     [SerializeField]
     private int
@@ -13,13 +14,11 @@ public class PlusMinusButtonGroup : MonoBehaviour
         _maxValue = 50;
 
     [SerializeField]
-    private Button
-        _plusButton,
-        _minusButton;
-
-    [SerializeField]
     private TMP_Text
         _displayText;
+
+    [SerializeField] 
+    private bool _useVelocity = true;
 
     [SerializeField]
     private float _delayDecayRate = 0.1f;
@@ -30,64 +29,72 @@ public class PlusMinusButtonGroup : MonoBehaviour
     [SerializeField]
     private UnityEvent _onValueChanged;
 
-    public int Value { get; private set; }
+    public int Value { get; private set; } = 0;
 
-    private bool _isButtonPressed;  
+    private bool _isButtonPressed = false;  
 
     private void Start()
     {
         SetValue(_initialValue);
     }
 
-    public void IncrementValue()
+    public override void Left_OnClick()
     {
-        
-        if (Value < _maxValue)
-        {
-            SetValue(Value + 1);
-        }
-    }
-
-    public void DecrementValue()
-    {
-        if (Value > _minValue)
+        if (!_useVelocity)
         {
             SetValue(Value - 1);
+            base.Left_OnClick();
         }  
+    }
+
+    public override void Right_OnClick()
+    {
+        if (!_useVelocity)
+        {
+            SetValue(Value + 1);
+            base.Right_OnClick();
+        }       
     }
 
     public void SetValue(int value)
     {
-        Value = value;
+        if (value >= _minValue && value <= _maxValue)
+        {
+            Value = value;
+        }   
         _displayText.text = Value.ToString();
         _onValueChanged?.Invoke();
     }
 
-    public void OnButtonDown(bool isPlusButton)
-    { 
-        _isButtonPressed = true;
-        StartCoroutine(OnButtonHoldRoutine(isPlusButton));
+    public void OnButtonDown(int step)
+    {
+        if (_useVelocity)
+        {
+            _isButtonPressed = true;
+            StartCoroutine(OnButtonHoldRoutine(step));
+        }
     }
+    
 
     public void OnButtonUp()
     {
-        _isButtonPressed = false;
-        StopAllCoroutines();
+        if (_useVelocity)
+        {
+            _isButtonPressed = false;
+            StopAllCoroutines();
+        }
     }
     
-    private IEnumerator OnButtonHoldRoutine(bool isPlusButton)
+    private IEnumerator OnButtonHoldRoutine(int step)
     {
-        if (isPlusButton) { IncrementValue(); }
-        else { DecrementValue(); }
-        
+        SetValue(Value + step);
         float delayPoint = 0;
         float delay = _holdDelayCurve.Evaluate(delayPoint);
         yield return new WaitForSeconds(delay);    
 
         while (_isButtonPressed)
         {
-            if (isPlusButton) { IncrementValue(); }
-            else { DecrementValue(); }
+            SetValue(Value+step);
             delayPoint += _delayDecayRate;
             delay = _holdDelayCurve.Evaluate(delayPoint);
             yield return new WaitForSeconds(delay);
