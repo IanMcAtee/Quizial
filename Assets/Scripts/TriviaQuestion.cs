@@ -1,6 +1,6 @@
-using System;
-using UnityEngine;
-
+/// <summary>
+/// Base class for a trivia question
+/// </summary>
 public class TriviaQuestion
 {
     public int Number;
