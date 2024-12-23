@@ -63,8 +63,6 @@ public class QuestionManager : MonoBehaviour
     }
 
     
-
-    
     public void StartQuestions()
     {
         // Reset the state of the question manager

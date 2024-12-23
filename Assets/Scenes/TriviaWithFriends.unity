@@ -203,10 +203,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1304864834}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: Back_OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -214,18 +214,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1189421183}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &5338639
 MonoBehaviour:
@@ -312,7 +300,6 @@ GameObject:
   - component: {fileID: 27543897}
   - component: {fileID: 27543899}
   - component: {fileID: 27543898}
-  - component: {fileID: 27543900}
   m_Layer: 5
   m_Name: MixedPanel
   m_TagString: Untagged
@@ -378,19 +365,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 27543896}
   m_CullTransparentMesh: 1
---- !u!114 &27543900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 27543896}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2139cec148f394bbbbfc1b6b468347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _associatedQuestionType: 0
 --- !u!1 &32577292
 GameObject:
   m_ObjectHideFlags: 0
@@ -546,7 +520,7 @@ GameObject:
   m_Component:
   - component: {fileID: 56903021}
   m_Layer: 5
-  m_Name: SFXPanel
+  m_Name: TimePanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6463,8 +6437,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1833910038}
-        m_TargetAssemblyTypeName: MenuManager, Assembly-CSharp
+      - m_Target: {fileID: 1189421186}
+        m_TargetAssemblyTypeName: MainMenuHandler, Assembly-CSharp
         m_MethodName: Start_OnClick
         m_Mode: 1
         m_Arguments:
@@ -6473,7 +6447,7 @@ MonoBehaviour:
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 
-          m_BoolArgument: 1
+          m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &206663723
 MonoBehaviour:
@@ -7834,7 +7808,6 @@ GameObject:
   - component: {fileID: 458552056}
   - component: {fileID: 458552058}
   - component: {fileID: 458552057}
-  - component: {fileID: 458552059}
   m_Layer: 5
   m_Name: HardPanel
   m_TagString: Untagged
@@ -7900,19 +7873,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458552055}
   m_CullTransparentMesh: 1
---- !u!114 &458552059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 458552055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7329075bf8818254d8abf734f70aeb0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _associatedDifficulty: 3
 --- !u!1 &460717074
 GameObject:
   m_ObjectHideFlags: 0
@@ -9191,7 +9151,6 @@ GameObject:
   - component: {fileID: 813559586}
   - component: {fileID: 813559588}
   - component: {fileID: 813559587}
-  - component: {fileID: 813559589}
   m_Layer: 5
   m_Name: TrueFalsePanel
   m_TagString: Untagged
@@ -9257,19 +9216,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 813559585}
   m_CullTransparentMesh: 1
---- !u!114 &813559589
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 813559585}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2139cec148f394bbbbfc1b6b468347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _associatedQuestionType: 2
 --- !u!1 &816895190
 GameObject:
   m_ObjectHideFlags: 0
@@ -10463,7 +10409,6 @@ GameObject:
   - component: {fileID: 1097089503}
   - component: {fileID: 1097089504}
   - component: {fileID: 1097089505}
-  - component: {fileID: 1097089506}
   m_Layer: 5
   m_Name: PlusMinusButtonGroup
   m_TagString: Untagged
@@ -10531,10 +10476,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftButton: {fileID: 202251246}
   _rightButton: {fileID: 1938274165}
-  _onLeftButtonClick:
+  OnLeftButtonClick:
     m_PersistentCalls:
       m_Calls: []
-  _onRightButtonClick:
+  OnRightButtonClick:
     m_PersistentCalls:
       m_Calls: []
   _initialValue: 10
@@ -10567,13 +10512,13 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  _onValueChanged:
+  OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1097089506}
-        m_TargetAssemblyTypeName: NumberQuestionsSetter, Assembly-CSharp
-        m_MethodName: SetNumberOfQuestions
-        m_Mode: 1
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetNumberQuestions
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -10582,19 +10527,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1097089506
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1097089502}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 039f2d31d3b9fdc4eb97ecbf5812efe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _plusMinusButtonGroup: {fileID: 1097089505}
 --- !u!1 &1112530045
 GameObject:
   m_ObjectHideFlags: 0
@@ -11226,7 +11158,6 @@ GameObject:
   - component: {fileID: 1182304689}
   - component: {fileID: 1182304691}
   - component: {fileID: 1182304690}
-  - component: {fileID: 1182304692}
   m_Layer: 5
   m_Name: MultipleChoicePanel
   m_TagString: Untagged
@@ -11292,19 +11223,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1182304688}
   m_CullTransparentMesh: 1
---- !u!114 &1182304692
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1182304688}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d2139cec148f394bbbbfc1b6b468347, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _associatedQuestionType: 1
 --- !u!1 &1189421183
 GameObject:
   m_ObjectHideFlags: 0
@@ -11314,6 +11232,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1189421184}
+  - component: {fileID: 1189421186}
   - component: {fileID: 1189421185}
   m_Layer: 5
   m_Name: MainMenuUI
@@ -11358,6 +11277,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <AssociatedGameState>k__BackingField: 0
+--- !u!114 &1189421186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1189421183}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c446f4772116315469085c62c5cd3697, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _settingsText: {fileID: 1582908786}
+  _settingsTextLineHeight: 60
+  _optionsUIObject: {fileID: 1304864834}
 --- !u!1 &1200937783
 GameObject:
   m_ObjectHideFlags: 0
@@ -11539,7 +11473,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1233775054}
-  - component: {fileID: 1233775055}
   m_Layer: 5
   m_Name: CategoryPanel
   m_TagString: Untagged
@@ -11568,19 +11501,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 233}
   m_SizeDelta: {x: 0, y: 220}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1233775055
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1233775053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ccc3dfa6f777e547a33977cdc5168e1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _categoryText: {fileID: 1490220046}
 --- !u!1 &1267803936
 GameObject:
   m_ObjectHideFlags: 0
@@ -11665,10 +11585,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1189421183}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1189421186}
+        m_TargetAssemblyTypeName: MainMenuHandler, Assembly-CSharp
+        m_MethodName: Settings_OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -11676,18 +11596,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1304864834}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1267803939
 MonoBehaviour:
@@ -12198,6 +12106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1304864835}
+  - component: {fileID: 1304864836}
   m_Layer: 5
   m_Name: OptionsUI
   m_TagString: Untagged
@@ -12230,6 +12139,25 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1304864836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1304864834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1615313ad19315b42b631c0ff3c2d986, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _numQuestionsButtonGroup: {fileID: 1097089505}
+  _categoryText: {fileID: 1490220046}
+  _difficultyButtonGroup: {fileID: 1558916429}
+  _questionTypeButtonGroup: {fileID: 1757402000}
+  _timePerQuestionSlider: {fileID: 1405021514}
+  _mainMenuUI: {fileID: 1189421183}
+  _categoriesUI: {fileID: 2030854920}
 --- !u!1 &1321078599
 GameObject:
   m_ObjectHideFlags: 0
@@ -12774,7 +12702,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1405021512}
-  - component: {fileID: 1405021513}
   - component: {fileID: 1405021514}
   m_Layer: 5
   m_Name: Slider
@@ -12805,7 +12732,7 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &1405021513
+--- !u!114 &1405021514
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12814,7 +12741,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1405021511}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Script: {fileID: 11500000, guid: 1653aaf1e8a493f4fa4ea450199e5bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
@@ -12849,29 +12776,27 @@ MonoBehaviour:
   m_FillRect: {fileID: 1675687271}
   m_HandleRect: {fileID: 1633415821}
   m_Direction: 0
-  m_MinValue: 5
+  m_MinValue: 0
   m_MaxValue: 61
   m_WholeNumbers: 1
   m_Value: 20
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
---- !u!114 &1405021514
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1405021511}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1653aaf1e8a493f4fa4ea450199e5bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _timePerQuestionSlider: {fileID: 1405021513}
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetTimePerQuestion
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   _sliderText: {fileID: 1487349128}
   _infinitySymbolFontSize: 52
-  _maxSliderValue: 61
 --- !u!1 &1406894281
 GameObject:
   m_ObjectHideFlags: 0
@@ -13327,7 +13252,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '30 '
+  m_text: 20
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e9c11434d8bd119449d9473d4759c531, type: 2}
   m_sharedMaterial: {fileID: -8726482057676331485, guid: e9c11434d8bd119449d9473d4759c531, type: 2}
@@ -13354,8 +13279,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
-  m_fontSizeBase: 32
+  m_fontSize: 38
+  m_fontSizeBase: 38
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13662,10 +13587,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1304864834}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: MoreCategories_OnClick
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13673,18 +13598,6 @@ MonoBehaviour:
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 2030854920}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
         m_CallState: 2
 --- !u!114 &1495091553
 MonoBehaviour:
@@ -13895,10 +13808,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftButton: {fileID: 929558660}
   _rightButton: {fileID: 123522187}
-  _onLeftButtonClick:
+  OnLeftButtonClick:
     m_PersistentCalls:
       m_Calls: []
-  _onRightButtonClick:
+  OnRightButtonClick:
     m_PersistentCalls:
       m_Calls: []
   _startingObjectIndex: 0
@@ -13907,9 +13820,63 @@ MonoBehaviour:
   - {fileID: 1946414216}
   - {fileID: 1791339166}
   - {fileID: 458552055}
-  _onCenterObjectChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  OnCenterObjectActivate:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetDifficulty
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetDifficulty
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetDifficulty
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetDifficulty
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1566180032
 GameObject:
   m_ObjectHideFlags: 0
@@ -14193,7 +14160,6 @@ GameObject:
   - component: {fileID: 1582908785}
   - component: {fileID: 1582908787}
   - component: {fileID: 1582908786}
-  - component: {fileID: 1582908788}
   m_Layer: 5
   m_Name: CurrentSettingsText
   m_TagString: Untagged
@@ -14217,8 +14183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -305}
-  m_SizeDelta: {x: 0, y: 180}
+  m_AnchoredPosition: {x: 0, y: -266}
+  m_SizeDelta: {x: 0, y: 250}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1582908786
 MonoBehaviour:
@@ -14242,10 +14208,12 @@ MonoBehaviour:
       m_Calls: []
   m_text: '<line-height=60> Number of Questions: 10
 
+    <b>Time per Question: </b>60
+    (s)
+
     Category: Any
 
-    Difficulty:
-    Any
+    Difficulty: Any
 
 '
   m_isRightToLeft: 0
@@ -14326,20 +14294,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1582908784}
   m_CullTransparentMesh: 1
---- !u!114 &1582908788
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1582908784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 18c4e8aab7b08da4191481f4c8a45355, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _mainMenuSettingsText: {fileID: 1582908786}
-  _settingsTextLineHeight: 60
 --- !u!1 &1608824185
 GameObject:
   m_ObjectHideFlags: 0
@@ -15470,7 +15424,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1707888936
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15902,10 +15856,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _leftButton: {fileID: 1274199332}
   _rightButton: {fileID: 816895192}
-  _onLeftButtonClick:
+  OnLeftButtonClick:
     m_PersistentCalls:
       m_Calls: []
-  _onRightButtonClick:
+  OnRightButtonClick:
     m_PersistentCalls:
       m_Calls: []
   _startingObjectIndex: 0
@@ -15913,9 +15867,49 @@ MonoBehaviour:
   - {fileID: 27543896}
   - {fileID: 1182304688}
   - {fileID: 813559585}
-  _onCenterObjectChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  OnCenterObjectActivate:
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetQuestionType
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetQuestionType
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1304864836}
+        m_TargetAssemblyTypeName: OptionsMenuHandler, Assembly-CSharp
+        m_MethodName: SetQuestionType
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1758453884
 GameObject:
   m_ObjectHideFlags: 0
@@ -16100,7 +16094,6 @@ GameObject:
   - component: {fileID: 1791339167}
   - component: {fileID: 1791339169}
   - component: {fileID: 1791339168}
-  - component: {fileID: 1791339170}
   m_Layer: 5
   m_Name: MediumPanel
   m_TagString: Untagged
@@ -16166,19 +16159,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1791339166}
   m_CullTransparentMesh: 1
---- !u!114 &1791339170
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1791339166}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7329075bf8818254d8abf734f70aeb0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _associatedDifficulty: 2
 --- !u!1 &1833910036
 GameObject:
   m_ObjectHideFlags: 0
@@ -16231,6 +16211,7 @@ MonoBehaviour:
   _questionsPanel: {fileID: 132123286}
   _pauseButton: {fileID: 1276090595}
   _pausedPanel: {fileID: 1947375216}
+  _scoreCircleImage: {fileID: 0}
   _categoryButtonPrefab: {fileID: 443592974626592361, guid: 9fa9877311c0d6d47b641189057c41b1, type: 3}
   _scrollViewContent: {fileID: 1877720258}
 --- !u!1 &1859231262
@@ -16705,7 +16686,6 @@ GameObject:
   - component: {fileID: 1924451712}
   - component: {fileID: 1924451714}
   - component: {fileID: 1924451713}
-  - component: {fileID: 1924451715}
   m_Layer: 5
   m_Name: AnyPanel
   m_TagString: Untagged
@@ -16771,19 +16751,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924451711}
   m_CullTransparentMesh: 1
---- !u!114 &1924451715
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1924451711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7329075bf8818254d8abf734f70aeb0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _associatedDifficulty: 0
 --- !u!1 &1938274163
 GameObject:
   m_ObjectHideFlags: 0
@@ -17098,7 +17065,6 @@ GameObject:
   - component: {fileID: 1946414217}
   - component: {fileID: 1946414219}
   - component: {fileID: 1946414218}
-  - component: {fileID: 1946414220}
   m_Layer: 5
   m_Name: EasyPanel
   m_TagString: Untagged
@@ -17164,19 +17130,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1946414216}
   m_CullTransparentMesh: 1
---- !u!114 &1946414220
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1946414216}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7329075bf8818254d8abf734f70aeb0b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _associatedDifficulty: 1
 --- !u!1 &1947375216
 GameObject:
   m_ObjectHideFlags: 0

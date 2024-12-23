@@ -1,7 +1,6 @@
 using UnityEngine;
 using TMPro;
-using UnityEngine.Rendering.LookDev;
-using System.Xml.Serialization;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -16,6 +15,12 @@ public class MenuManager : MonoBehaviour
     private GameObject _pauseButton;
     [SerializeField]
     private GameObject _pausedPanel;
+
+    [Header("Game Over Menu Properties")]
+    [SerializeField]
+    private Image _scoreCircleImage;
+    
+
 
 
     [Header("Category Properties")]
@@ -46,10 +51,7 @@ public class MenuManager : MonoBehaviour
         GameManager.Instance.UpdateGameState(GameState.Playing);
     }
 
-    public void Start_OnClick()
-    {
-        GameManager.Instance.UpdateGameState(GameState.Playing);
-    }
+    
 
     public void MainMenu_OnClick()
     {
@@ -76,6 +78,8 @@ public class MenuManager : MonoBehaviour
             case GameState.Playing:
                 SetPauseMenu(false);
                 SetSingleMenuActive(GameState.Playing);
+                break;
+            case GameState.GameOver:
                 break;
             default:
                 SetSingleMenuActive(gameState);

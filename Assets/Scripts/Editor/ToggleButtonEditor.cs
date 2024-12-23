@@ -1,8 +1,4 @@
-using UnityEngine;
-
 using UnityEditor;
-using UnityEngine.UI;
-
 
 [CustomEditor(typeof(ToggleButton))]
 public class ToggleButtonEditor : Editor
