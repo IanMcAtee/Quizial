@@ -4,7 +4,7 @@ using TMPro;
 /// <summary>
 /// Class to handle behaviour on the main menu UI
 /// </summary>
-public class MainMenuHandler : MonoBehaviour
+public class MainMenuHandler : MenuElement
 {
     [SerializeField]
     private TMP_Text _settingsText;

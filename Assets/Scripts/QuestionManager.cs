@@ -73,7 +73,7 @@ public class QuestionManager : MonoBehaviour
         if (_responseCode != OpenTdbAPIHelper.ResponseCode.Success)
         {
             GameManager.Instance.UpdateGameState(GameState.Error);
-            Debug.LogError($"API ERROR: {_responseCode}");
+            //Debug.LogError($"API ERROR: {_responseCode}");
             return;
         }
 

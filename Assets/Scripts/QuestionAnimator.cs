@@ -1,8 +1,9 @@
 using System.Collections;
-using System.Linq;
 using UnityEngine;
-using UnityEngine.UIElements;
 
+/// <summary>
+/// Animates the enter and exit of questions
+/// </summary>
 public class QuestionAnimator : MonoBehaviour
 {
     [SerializeField]
@@ -21,28 +22,41 @@ public class QuestionAnimator : MonoBehaviour
         _originalPosition = _questionUIRectTransfrom.localPosition;
     }
 
-
+    /// <summary>
+    /// Plays the enter animation
+    /// </summary>
     public void PlayEnterAnimation()
     {
         StartCoroutine(AnimationRoutine(AnimationDirection.Enter));
     }
 
+    /// <summary>
+    /// Plays the exit animation
+    /// </summary>
     public void PlayExitAnimation()
     {
         StartCoroutine(AnimationRoutine(AnimationDirection.Exit));
     }
 
+    /// <summary>
+    /// Resets the animation position
+    /// </summary>
     public void ResetPosition()
     {
         _questionUIRectTransfrom.localPosition = _originalPosition;  
     }
 
+    /// <summary>
+    /// Coroutine to perform the enter or exit animation
+    /// </summary>
+    /// <param name="direction"></param>
+    /// <returns></returns>
     private IEnumerator AnimationRoutine(AnimationDirection direction)
     {
         IsAnimating = true;
 
+        // Assign the animation curve based on the direction
         AnimationCurve animationCurve = null;
-
         switch (direction)
         {
             case AnimationDirection.Enter:
@@ -53,20 +67,21 @@ public class QuestionAnimator : MonoBehaviour
                 break;
         }
 
+        // Step through animation curve, and assign position based on curve
         float elapsedTime = 0f;
-
-        while (elapsedTime < animationCurve.keys[^1].time)
+        while (elapsedTime < animationCurve.keys[^1].time) //^1 means last index
         {
             yield return null;
             elapsedTime += Time.deltaTime;
             float newPosition = animationCurve.Evaluate(elapsedTime);
             _questionUIRectTransfrom.localPosition = new Vector2(newPosition, 0);
-            
-            
         }
         IsAnimating = false;
     }
 
+    /// <summary>
+    /// Enumeration defining the animation direction
+    /// </summary>
     private enum AnimationDirection
     {
         Enter,

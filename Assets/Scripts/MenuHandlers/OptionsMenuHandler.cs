@@ -4,7 +4,7 @@ using TMPro;
 /// <summary>
 /// Class to handle behaviour on the Options UI
 /// </summary>
-public class OptionsMenuHandler : MonoBehaviour
+public class OptionsMenuHandler : MonoBehaviour 
 {
     [Header("General Properties")]
     [SerializeField]
@@ -88,7 +88,6 @@ public class OptionsMenuHandler : MonoBehaviour
     public void SetQuestionType(int questionType)
     {
         GameManager.Instance.Settings.QuestionType = (TriviaQuestionType)questionType;
-        print(GameManager.Instance.Settings.QuestionType);
     }
 
     /// <summary>

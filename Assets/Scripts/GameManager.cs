@@ -2,27 +2,29 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+/// <summary>
+/// Main game manager class (singleton)
+/// </summary>
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
 {
-   // Implement singleton pattern
-
     public static GameManager Instance {  get; private set; }
-
     public static event Action<GameState> OnGameStateUpdate;
-
     public GameSettings Settings { get; set; } = new GameSettings();
     public List<TriviaCategory> AvailableCategories { get; private set; }
-
     public GameState State { get; private set; } = GameState.MainMenu;
-
     public int Score { get; private set; } = 0;
-
     public bool IsPlaying { get; private set; } = false;
+
+    [Header("Menu Properties")]
+    [SerializeField]
+    private MenuElement[] _menuElements;
 
 
     private void Awake()
     {
+        // Implement singleton pattern 
         if (Instance != null && Instance != this)
         {
             Destroy(this);
@@ -35,38 +37,83 @@ public class GameManager : MonoBehaviour
 
         // Get the list of available trivia categories from the API
         PopulateCategories();
-        
-
+        UpdateGameState(GameState.MainMenu);
     }
 
 
     public void UpdateGameState(GameState newState)
     {
         State = newState;
-
         switch (newState)
         {
             case GameState.MainMenu:
-                Time.timeScale = 1f;
-                IsPlaying = false;
+                HandleMainMenuState();
                 break;
             case GameState.Playing:
-                Time.timeScale = 1f;
-                if (!IsPlaying)
-                {
-                    IsPlaying = true;
-                    QuestionManager.Instance.StartQuestions();
-                }
+                HandlePlayingState();
                 break; 
             case GameState.GameOver:
-                IsPlaying = false;
+                HandleGameOverState();
                 break;
             case GameState.Paused:
-                Time.timeScale = 0f;
+                HandlePausedState();
+                break;
+            case GameState.Error:
+                HandleErrorState();
                 break;
         }
-
+        SetSingleMenuActive();
         OnGameStateUpdate?.Invoke(State);
+    }
+
+    private void HandleMainMenuState()
+    {
+        Time.timeScale = 1f;
+        IsPlaying = false;
+    }
+
+    private void HandlePlayingState()
+    {
+        Time.timeScale = 1f;
+        if (!IsPlaying)
+        {
+            IsPlaying = true;
+            QuestionManager.Instance.StartQuestions();
+        } 
+    }
+
+    private void HandlePausedState()
+    {
+        Time.timeScale = 0f;
+    }
+
+    private void HandleGameOverState()
+    {
+        IsPlaying = false;
+        Time.timeScale = 1f;
+    }
+
+    private void HandleErrorState()
+    {
+        IsPlaying = false;
+    }
+
+    private void SetSingleMenuActive()
+    {
+        foreach (MenuElement menuElement in _menuElements)
+        {
+            if (menuElement.AssociatedGameState == State)
+            {
+                menuElement.gameObject.SetActive(true);
+                continue;
+            }
+            menuElement.gameObject.SetActive(false);
+        }
+    }
+
+    public void QuitApplication()
+    {
+        Application.Quit(); 
     }
 
     private void PopulateCategories()
@@ -75,14 +122,7 @@ public class GameManager : MonoBehaviour
         //Insert the "any" category at the beginning
         AvailableCategories.Insert(0, new TriviaCategory());
     }
-
-    public void UpdateSettings(GameSettings newSettings)
-    {
-        Settings = newSettings;
-    }
 }
-
-
 
 public enum GameState
 {
