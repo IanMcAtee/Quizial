@@ -1,8 +1,10 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-using System;
 
+/// <summary>
+/// Handles the behaviour of the answer button prefab
+/// </summary>
 public class AnswerButton : MonoBehaviour
 {
     [SerializeField]
@@ -22,16 +24,26 @@ public class AnswerButton : MonoBehaviour
         IsCorrect = false;
     }
 
+    /// <summary>
+    /// Set the answer text
+    /// </summary>
+    /// <param name="text"></param>
     public void SetAnswerText(string text)
     {
         _answerText.text = text;
     }
 
+    /// <summary>
+    /// Associates this button with the correct answer
+    /// </summary>
     public void SetAsCorrect()
     {
         IsCorrect = true;  
     }
 
+    /// <summary>
+    /// On click event of this button
+    /// </summary>
     public void CheckAnswer()
     {
         ChangeBorderStyle(IsCorrect);
@@ -39,6 +51,10 @@ public class AnswerButton : MonoBehaviour
         
     }
 
+    /// <summary>
+    /// Sets the border color to green for correct, red for incorrect
+    /// </summary>
+    /// <param name="isCorrect"></param>
     public void ChangeBorderStyle(bool isCorrect)
     {
         _normalBorder.gameObject.SetActive(false);

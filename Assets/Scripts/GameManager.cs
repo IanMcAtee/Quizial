@@ -4,7 +4,10 @@ using UnityEngine;
 
 
 /// <summary>
-/// Main game manager class (singleton)
+/// Main game manager class (singleton) <br/>
+/// Handles: <br/>
+/// - Game State and State Updates <br/>
+/// - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
 /// </summary>
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -50,8 +53,11 @@ public class GameManager : MonoBehaviour
                 HandleMainMenuState();
                 break;
             case GameState.Playing:
+                // Need to activate menu prior to calling any methods, so that scripts are available
+                SetSingleMenuActive();
+                OnGameStateUpdate?.Invoke(State);
                 HandlePlayingState();
-                break; 
+                return; 
             case GameState.GameOver:
                 HandleGameOverState();
                 break;
@@ -70,6 +76,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         IsPlaying = false;
+        Score = 0;
     }
 
     private void HandlePlayingState()
@@ -77,6 +84,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         if (!IsPlaying)
         {
+            Score = 0;
             IsPlaying = true;
             QuestionManager.Instance.StartQuestions();
         } 
@@ -111,6 +119,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void UpdateScore(int points)
+    {
+        Score += points;
+        print($"Score: {Score}");
+    }
+
     public void QuitApplication()
     {
         Application.Quit(); 
@@ -142,7 +156,6 @@ public class GameSettings
     public TriviaQuestionType QuestionType = TriviaQuestionType.Mixed;
     public float TimePerQuestion = 30f;
 }
-
 
 public class TriviaCategory
 {

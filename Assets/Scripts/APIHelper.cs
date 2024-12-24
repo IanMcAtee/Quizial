@@ -1,4 +1,3 @@
-
 using System;
 using System.Net.Http;
 using System.Web;
@@ -6,9 +5,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
 
-
+/// <summary>
+/// Class to interact with Open Trivia Database Rest API
+/// </summary>
 public static class OpenTdbAPIHelper
 {
+
+    /// <summary>
+    /// Deserialized response from an OpenTdb question API request
+    /// </summary>
     [Serializable]
     private class OpenTdbAPIResponse
     {
@@ -26,6 +31,9 @@ public static class OpenTdbAPIHelper
         public Result[] results;
     }
 
+    /// <summary>
+    /// Deserialized response from an OpenTdb all categories API request 
+    /// </summary>
     [Serializable]
     private class OpenTdbCategoryResponse
     {
@@ -38,18 +46,19 @@ public static class OpenTdbAPIHelper
         public Category[] trivia_categories;
     }
 
+    // Constants for the "get all categories" URL and words we ignore in the categories
     private const string CATEGORIES_URL = "https://opentdb.com/api_category.php";
     private static readonly string[] CATEGORY_STRING_IGNORES = { "Entertainment: ", "Science: " };
 
     /// <summary>
-    /// 
+    /// Retrieves a set of trivia questions by attempting a HTTP Get request to the specified URL
     /// </summary>
-    /// <param name="questionURL"></param>
-    /// <param name="responseCode"></param>
+    /// <param name="questionURL">The URL to attempt a HTTP Get request to</param>
+    /// <param name="responseCode">Reference variable for returning response code from API call</param>
     /// <returns></returns>
     public static TriviaQuestion[] GetQuestionSet(string questionURL, out ResponseCode responseCode)
     {
-        // Retrieve the JSON string from OpenTriviaDB and parse into OpenTdbAPIResponse class
+        // Retrieve the JSON string from OpenTriviaDB and deserialize into OpenTdbAPIResponse class
         string json = RetrieveJSON(questionURL);
         OpenTdbAPIResponse apiResponse = JsonUtility.FromJson<OpenTdbAPIResponse>(json);
 
@@ -60,56 +69,74 @@ public static class OpenTdbAPIHelper
             return new TriviaQuestion[0];
         }
        
-
+        // Preallocate an array to hold the question set
         TriviaQuestion[] questionSet = new TriviaQuestion[apiResponse.results.Length];
-        TriviaQuestion curQuestion;
-        OpenTdbAPIResponse.Result curResult;
+        
+        // Iterate through each API result, parsing each field into a TriviaQuestion class, and adding to output array
+        TriviaQuestion question;
+        OpenTdbAPIResponse.Result result;
         for (int i = 0; i < apiResponse.results.Length; i++)
         {
-            curQuestion = new TriviaQuestion();
-            curResult = apiResponse.results[i];
-                
-                
-            curQuestion.Number = i + 1;
-            curQuestion.Difficulty = curResult.difficulty;
-            curQuestion.Difficulty = char.ToUpper(curQuestion.Difficulty[0]) + curQuestion.Difficulty.Substring(1);
-            curQuestion.Category = ParseCategoryString(HttpUtility.HtmlDecode(curResult.category));
-            curQuestion.Question = HttpUtility.HtmlDecode(curResult.question);
-            curQuestion.CorrectAnswer = HttpUtility.HtmlDecode(curResult.correct_answer);
-            curQuestion.IncorrectAnswers = new string[curResult.incorrect_answers.Length];
-            for (int j = 0; j < curResult.incorrect_answers.Length; j++)
+            question = new TriviaQuestion();
+            result = apiResponse.results[i];
+            
+            // Parse difficulty, convert first letter to uppercase
+            question.Difficulty = result.difficulty;
+            question.Difficulty = char.ToUpper(question.Difficulty[0]) + question.Difficulty.Substring(1);
+            // Parse category, use helper function to decode html encoding and strip ignore words
+            question.Category = ParseCategoryString(HttpUtility.HtmlDecode(result.category));
+            question.Question = HttpUtility.HtmlDecode(result.question);
+            // Parse correct answer, use helper function to decode html encoding
+            question.CorrectAnswer = HttpUtility.HtmlDecode(result.correct_answer);
+            // Parse incorrect answers, iterate through each and use helper function to decode html encoding
+            question.IncorrectAnswers = new string[result.incorrect_answers.Length];
+            for (int j = 0; j < result.incorrect_answers.Length; j++)
             {
-                curQuestion.IncorrectAnswers[j] = HttpUtility.HtmlDecode(curResult.incorrect_answers[j]);
+                question.IncorrectAnswers[j] = HttpUtility.HtmlDecode(result.incorrect_answers[j]);
             }
 
-            questionSet[i] = curQuestion;
+            // Add the TriviaQuestion to the question set
+            questionSet[i] = question;
         }
 
+        // Return the question set
         return questionSet;
         
     }
 
+    /// <summary>
+    /// Retrieves a list of all trivia categories available
+    /// </summary>
+    /// <returns></returns>
     public static List<TriviaCategory> GetCategories()
     {
+        // Retrieve the JSON string from OpenTriviaDB and deserialize into OpenTdbCategoryResponse class
         string json = RetrieveJSON(CATEGORIES_URL);
         OpenTdbCategoryResponse apiCategoryResponse = JsonUtility.FromJson<OpenTdbCategoryResponse>(json);
         
+        // Initialize list of trivia categories
         List<TriviaCategory> categories = new List<TriviaCategory>();
 
+        // Iterate through each API category response and add a new corresponding TrivaCategory to list
         foreach (OpenTdbCategoryResponse.Category apiCategory in apiCategoryResponse.trivia_categories)
         {
             TriviaCategory category = new TriviaCategory();
-            
             category.Id = apiCategory.id;
-
+            // Use helper funtion to remove ignore words from category names
             category.Name = ParseCategoryString(apiCategory.name);
-
             categories.Add(category);
         }
+        // Alphabetize and return categories
         categories = categories.OrderBy(c => c.Name).ToList();
         return categories;
     }
 
+    /// <summary>
+    /// Helper function to remove ignore words from a category string <br/>
+    /// Example: "Entertainemnt: Movies" -> "Movies"
+    /// </summary>
+    /// <param name="unparsedString"></param>
+    /// <returns></returns>
     private static string ParseCategoryString(string unparsedString)
     {
         foreach (string ignoreString in CATEGORY_STRING_IGNORES)
@@ -121,7 +148,13 @@ public static class OpenTdbAPIHelper
         }
         return unparsedString;
     }
-    
+
+    /// <summary>
+    /// Helper function to use .Net.http to call API URL and return the JSON <br/>
+    /// Note: This runs synchronously and results in "stutter" as thread waits for response
+    /// </summary>
+    /// <param name="url">The URL to post a Get request to</param>
+    /// <returns>JSON string</returns>
     private static string RetrieveJSON(string url)
     {
         /*
@@ -143,27 +176,15 @@ public static class OpenTdbAPIHelper
         }
     }
 
-    private static string FormURL(int numQuestions=10, int categoryID=0, string difficulty="", string type="")
-    {
-        string url = "https://opentdb.com/api.php?amount=" + numQuestions;
-        if (categoryID !=  0)
-        {
-            url += "&category=" + categoryID.ToString();
-        }
-        if (difficulty != "")
-        {
-            url += "&difficulty=" + difficulty;
-        }
-        if (type != "")
-        {
-            url += "&type=" + type;
-        }
-        Debug.Log(url);
-        return url;
-    }
-
+    /// <summary>
+    /// Helper function to format the proper API URL to call based on game settings.
+    /// </summary>
+    /// <param name="gameSettings"></param>
+    /// <returns>Formatted URL</returns>
     public static string FormURL(GameSettings gameSettings)
     {
+        // URL FORM: opentdb.com/api.php?amount=AMOUNT&category=CAT_ID&difficulty=DIFFICULTY&type=TYPE
+        
         string url = "https://opentdb.com/api.php?amount=" + gameSettings.NumQuestions;
         if (gameSettings.Category.Id != -1)
         {
@@ -198,10 +219,12 @@ public static class OpenTdbAPIHelper
                     break;
             }
         }
-        Debug.Log(url);
         return url;
     }
 
+    /// <summary>
+    /// The Response Code from the API call
+    /// </summary>
     public enum ResponseCode
     {
         Success = 0,

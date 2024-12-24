@@ -13,27 +13,42 @@ public class ErrorMenuHandler : MenuElement
 
     private void OnEnable()
     {
+        // Get the response code from the question manager and print it to the screen
         OpenTdbAPIHelper.ResponseCode responseCode = QuestionManager.Instance.APIResponseCode;
         PrintResponseCode(responseCode);
         PrintTroubleShootingTip(responseCode);
     }
 
+    /// <summary>
+    /// On click method to return to the main menu
+    /// </summary>
     public void MainMenu_OnClick()
     {
         GameManager.Instance.UpdateGameState(GameState.MainMenu);
     }
 
+    /// <summary>
+    /// On click method to quit the application
+    /// </summary>
     public void Quit_OnClick()
     {
         GameManager.Instance.QuitApplication();
     }
 
+    /// <summary>
+    /// Method to format and print the response code to the text component
+    /// </summary>
+    /// <param name="responseCode"></param>
     private void PrintResponseCode(OpenTdbAPIHelper.ResponseCode responseCode)
     {
         string responseCodeText = $"Response Code {(int)responseCode}: {responseCode}";
         _errorDetailsText.text = responseCodeText; 
     }
 
+    /// <summary>
+    /// Method to formate and print a troubleshooting tip to the text component
+    /// </summary>
+    /// <param name="responseCode"></param>
     private void PrintTroubleShootingTip(OpenTdbAPIHelper.ResponseCode responseCode)
     {
         string troubleshootText = "We're really sorry about this. Looks like something the developer " +
