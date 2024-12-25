@@ -12,11 +12,24 @@ public class MainMenuHandler : MenuElement
     private float _settingsTextLineHeight = 60f;
     [SerializeField]
     private GameObject _optionsUIObject;
+    [SerializeField]
+    private ParticleSystem _mainMenuParticleSystem;
 
     private void OnEnable()
     {
         // On each enable, set the current settings text
         FormatMainMenuSettingsText(GameManager.Instance.Settings);
+        // Activate the particle system
+        _mainMenuParticleSystem.gameObject.SetActive(true);
+    }
+
+    private void OnDisable()
+    {
+        // Deactivate the particle system
+        if (_mainMenuParticleSystem != null)
+        {
+            _mainMenuParticleSystem.gameObject.SetActive(false);
+        }
     }
 
     /// <summary>
@@ -42,10 +55,20 @@ public class MainMenuHandler : MenuElement
     /// <param name="settings"></param>
     private void FormatMainMenuSettingsText(GameSettings settings)
     {
-        _settingsText.text = $"<line-height={_settingsTextLineHeight}>"
+        string text = $"<line-height={_settingsTextLineHeight}>"
             + $"<b>Number of Questions:</b> {settings.NumQuestions}\n"
-            + $"<b>Time per Question:</b> {settings.TimePerQuestion} (s)\n"
-            + $"<b>Category:</b> {settings.Category.Name}\n"
+            + $"<b>Time per Question:</b> ";
+        if (settings.TimePerQuestion <= 0)
+        {
+            text += $"Unlimited\n";
+        }
+        else
+        {
+            text += $"{settings.TimePerQuestion} (s)\n";
+        }
+        text += $"<b>Category:</b> {settings.Category.Name}\n"
             + $"<b>Difficulty:</b> {settings.Difficulty}"; 
+
+        _settingsText.text = text;  
     }
 }

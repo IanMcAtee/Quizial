@@ -186,7 +186,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      play_circle_20dp_FFFFFF_FILL0_wght400_GRAD0_opsz20_0: 1371513213126799215
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

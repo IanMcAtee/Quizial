@@ -1,11 +1,15 @@
 using TMPro;
 using UnityEngine;
 
+/// <summary>
+/// Handles the behaviour of quotations
+/// </summary>
 public class QuoteManager : MonoBehaviour
 {
     [SerializeField]
     private TMP_Text _quoteText;
 
+    // List of available quotes
     private Quote[] _quotes =
     {
         new Quote("Real knowledge is to know the extent of one’s ignorance.",
@@ -38,15 +42,22 @@ public class QuoteManager : MonoBehaviour
 
     private void OnEnable()
     {
+        // Show a random quote upon enable
         ShowRandomQuote();
     }
 
+    /// <summary>
+    /// Displays a random quote
+    /// </summary>
     public void ShowRandomQuote()
     {
         int randIndex = Random.Range(0, _quotes.Length);
         _quoteText.text = _quotes[randIndex].FormatQuote();
     }
 
+    /// <summary>
+    /// Simple Quote Class
+    /// </summary>
     private class Quote
     {
         public string Text;

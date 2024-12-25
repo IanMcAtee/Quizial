@@ -48,7 +48,6 @@ public class AnswerButton : MonoBehaviour
     {
         ChangeBorderStyle(IsCorrect);
         QuestionManager.Instance.OnAnswerButtonPress(IsCorrect);
-        
     }
 
     /// <summary>
@@ -61,7 +60,4 @@ public class AnswerButton : MonoBehaviour
         _correctBorder.gameObject.SetActive(isCorrect);
         _incorrectBorder.gameObject.SetActive(!isCorrect);
     }
-
-    
-
 }

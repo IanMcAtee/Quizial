@@ -57,7 +57,6 @@ public class LeftRightShiftButtonGroup : LeftRightButtonGroup
         base.Right_OnClick();
     }
 
-
     /// <summary>
     /// Private method to shift center object by shiftAmount and invoke associated event
     /// </summary>

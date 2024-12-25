@@ -2,12 +2,12 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-
 /// <summary>
 /// Main game manager class (singleton) <br/>
 /// Handles: <br/>
 /// - Game State and State Updates <br/>
-/// - XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+/// - Game Settings <br/>
+/// - Activating menu elements based on game state
 /// </summary>
 [DefaultExecutionOrder(-1)]
 public class GameManager : MonoBehaviour
@@ -38,12 +38,21 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(this);
         }
 
+        // Set the resolution of the game
+        Screen.SetResolution(720, 1280, false);
+
         // Get the list of available trivia categories from the API
         PopulateCategories();
         UpdateGameState(GameState.MainMenu);
     }
 
+    
 
+
+    /// <summary>
+    /// Update the state of the game, handles logic for each state
+    /// </summary>
+    /// <param name="newState"></param>
     public void UpdateGameState(GameState newState)
     {
         State = newState;
@@ -53,7 +62,9 @@ public class GameManager : MonoBehaviour
                 HandleMainMenuState();
                 break;
             case GameState.Playing:
-                // Need to activate menu prior to calling any methods, so that scripts are available
+                /* DIFFERENCE:
+                 * Need to activate the playing UI prior to calling its methods
+                 * This ensures its scripts are enabled to perform game logic */
                 SetSingleMenuActive();
                 OnGameStateUpdate?.Invoke(State);
                 HandlePlayingState();
@@ -72,6 +83,9 @@ public class GameManager : MonoBehaviour
         OnGameStateUpdate?.Invoke(State);
     }
 
+    /// <summary>
+    /// Handles logic of main menu state
+    /// </summary>
     private void HandleMainMenuState()
     {
         Time.timeScale = 1f;
@@ -79,9 +93,13 @@ public class GameManager : MonoBehaviour
         Score = 0;
     }
 
+    /// <summary>
+    /// Handles logic of playing state
+    /// </summary>
     private void HandlePlayingState()
     {
         Time.timeScale = 1f;
+        // Only start questions if player coming from main menu or game over state
         if (!IsPlaying)
         {
             Score = 0;
@@ -90,22 +108,34 @@ public class GameManager : MonoBehaviour
         } 
     }
 
+    /// <summary>
+    /// Handles logic of paused state
+    /// </summary>
     private void HandlePausedState()
     {
         Time.timeScale = 0f;
     }
 
+    /// <summary>
+    /// Handles logic of game over state
+    /// </summary>
     private void HandleGameOverState()
     {
         IsPlaying = false;
         Time.timeScale = 1f;
     }
 
+    /// <summary>
+    /// Handles logic of error state
+    /// </summary>
     private void HandleErrorState()
     {
         IsPlaying = false;
     }
 
+    /// <summary>
+    /// Sets a single menu element active based on the current game state
+    /// </summary>
     private void SetSingleMenuActive()
     {
         foreach (MenuElement menuElement in _menuElements)
@@ -119,17 +149,26 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Updates the game score
+    /// </summary>
+    /// <param name="points"></param>
     public void UpdateScore(int points)
     {
         Score += points;
-        print($"Score: {Score}");
     }
 
+    /// <summary>
+    /// Quits the application
+    /// </summary>
     public void QuitApplication()
     {
         Application.Quit(); 
     }
 
+    /// <summary>
+    /// Gets a list of all available categories from open trivia DB
+    /// </summary>
     private void PopulateCategories()
     {
         AvailableCategories = OpenTdbAPIHelper.GetCategories();
@@ -138,6 +177,9 @@ public class GameManager : MonoBehaviour
     }
 }
 
+/// <summary>
+/// Game States Enum
+/// </summary>
 public enum GameState
 {
     MainMenu,
@@ -148,6 +190,10 @@ public enum GameState
 }
 
 #region Settings Classes
+
+/// <summary>
+/// Game Settings Class
+/// </summary>
 public class GameSettings
 {
     public int NumQuestions = 10;
@@ -157,6 +203,9 @@ public class GameSettings
     public float TimePerQuestion = 30f;
 }
 
+/// <summary>
+/// Trivia Category Class
+/// </summary>
 public class TriviaCategory
 {
     public string Name;
@@ -169,6 +218,9 @@ public class TriviaCategory
     }
 }
 
+/// <summary>
+/// Trivia Difficulty Enum
+/// </summary>
 public enum TriviaDifficulty
 {
     Any,
@@ -177,6 +229,9 @@ public enum TriviaDifficulty
     Hard
 }
 
+/// <summary>
+/// Triva Question Type Enum
+/// </summary>
 public enum TriviaQuestionType
 {
     Mixed,
